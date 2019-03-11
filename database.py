@@ -18,11 +18,12 @@ def write_record(name, age, password):
         for line in f:
             line = line.strip()
             frags = line.split(DELIM)
-            if (frags == [first, age, password]):
+            if (frags[0] == name):
                 print('record already exists')
                 return
     with open('db.txt', 'a+') as f:
-        f.write("{}, {}, {}".format(name, age, password))
+        f.write("{}, {}, {}\n".format(name, age, password))
+        
 
 
 write_record('john', 20, 'hello123')
