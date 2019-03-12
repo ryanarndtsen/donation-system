@@ -14,17 +14,9 @@ class Password(object):
     def checkPassword(self):
         password = self.password
         if hasCapitals(password) and hasNumbers(password) and len(password) >= 6:
-            print("Strong password!")
-        if len(password) < 6:
-            print("Make sure your password is at least 6 letters.")
-        if not hasNumbers(password):
-            print("Make sure your password has a number in it.")
-        if not hasCapitals(password): 
-            print("Make sure your password has a capital letter in it.")
-        if len(password) < 6 or not hasNumbers(password) or not hasCapitals(password):
-            x = input("Enter new password:")
-            self.password = x
-            self.checkPassword()
+            return bool(True)
+        else:
+            return bool(False)
 
 class User(object):
     def __init__(self, firstName = "", lastName = "", age = 0, ID = [0,0,0,0], password = ""):
@@ -40,7 +32,7 @@ class User(object):
     def __repr__(self):
         return "Name:{first} {last} \n Age:{age} \n ID: {ID} \n Password: {passw}".format(first = self.firstName, last= self.lastName, age = self.age, ID = self.ID, passw = "*" * len(self.password.password))
     def getName(self):
-        return self.firstName + " " + self.lastName
+        return self.firstName + '' + self.lastName
     def setID(self, a, b, c, d):
         self.ID[0] = a
         self.ID[1] = b
@@ -66,16 +58,17 @@ class User(object):
         return self.password.password
 
 #test User
-'''me = User("Ryan","Arndtsen", 19, [4,5,4,7], "Ryan999")
+me = User("Ryan","Arndtsen", 19, [4,5,4,7], "Ryan999")
 print(me)
 print(me.getPassword())
+print(me.checkPass())
 me.setID(1,2,3,4)
 me.setAge(10)
 me.setName(me.firstName,"Swag")
 print(me)
 you = User("", "", 14, [3,2,2,2])
 you.check_name
-print('\n')'''
+print('\n')
 
 class Giver(User):
     def __init__(self, firstName = "", lastName = "", age = 0, ID = [0,0,0,0], password = "", funds = 0, totalGiven = 0, rewards = []):
@@ -149,13 +142,14 @@ class Hobo(User):
         return self.tCI
 
 #test Hobo
-rob = Hobo("Ronald","Weasley", 42, [10,22,3,1], "exntoP69", 0, 10)
+'''rob = Hobo("Ronald","Weasley", 42, [10,22,3,1], "exnto", 0, 10)
 print(rob)
 rob.updateBalance(5)
 print(rob.getBalance())
 print(rob.cashIn())
 print(rob.gettCI())
-print("\n")
+rob.checkPass()
+print("\n")'''
 
 #additional methods
 def donation(Giver, Hobo, amount):
