@@ -22,9 +22,15 @@ def defineAttributes():
     write_record(name, age, passw)
 
 def button1_func():
-    if person.checkPass() is True:
-        defineAttributes()
-    
+    if e.get() == "" or f.get() == "" or g.get() == "":
+        print("First, last name, and age need to be defined.")
+    else:
+        passw = h.get()
+        if hasCapitals(passw) and hasNumbers(passw) and len(passw) >= 6:
+            defineAttributes()
+        else:
+            print("Invalid password.")
+
 root = Tk()
 
 title = Label(root, text = "Donation System", fg = "blue", bg = "red")

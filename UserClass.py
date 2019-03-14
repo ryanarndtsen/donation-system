@@ -32,7 +32,7 @@ class User(object):
     def __repr__(self):
         return "Name:{first} {last} \n Age:{age} \n ID: {ID} \n Password: {passw}".format(first = self.firstName, last= self.lastName, age = self.age, ID = self.ID, passw = "*" * len(self.password.password))
     def getName(self):
-        return self.firstName + '' + self.lastName
+        return self.firstName + ' ' + self.lastName
     def setID(self, a, b, c, d):
         self.ID[0] = a
         self.ID[1] = b
@@ -58,7 +58,7 @@ class User(object):
         return self.password.password
 
 #test User
-me = User("Ryan","Arndtsen", 19, [4,5,4,7], "Ryan999")
+'''me = User("Ryan","Arndtsen", 19, [4,5,4,7], "Ryan999")
 print(me)
 print(me.getPassword())
 print(me.checkPass())
@@ -68,7 +68,7 @@ me.setName(me.firstName,"Swag")
 print(me)
 you = User("", "", 14, [3,2,2,2])
 you.check_name
-print('\n')
+print('\n')'''
 
 class Giver(User):
     def __init__(self, firstName = "", lastName = "", age = 0, ID = [0,0,0,0], password = "", funds = 0, totalGiven = 0, rewards = []):
