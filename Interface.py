@@ -2,6 +2,8 @@ from UserClass import *
 from database import *
 from tkinter import *
 from tkinter.font import Font
+
+person = User()
 def defineAttributes():
     global e
     global f
