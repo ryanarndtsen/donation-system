@@ -1,8 +1,7 @@
 from UserClass import *
 from database import *
 from tkinter import *
-
-person = User()
+from tkinter.font import Font
 def defineAttributes():
     global e
     global f
@@ -20,10 +19,13 @@ def defineAttributes():
     age = person.getAge()
     passw = person.getPassword()
     write_record(name, age, passw)
-
 def button1_func():
     if e.get() == "" or f.get() == "" or g.get() == "":
         print("First, last name, and age need to be defined.")
+    try:
+        int(g.get())
+    except:
+        print("Age must be a number.")
     else:
         passw = h.get()
         if hasCapitals(passw) and hasNumbers(passw) and len(passw) >= 6:
@@ -32,8 +34,9 @@ def button1_func():
             print("Invalid password.")
 
 root = Tk()
-
-title = Label(root, text = "Donation System", fg = "blue", bg = "red")
+myFont = Font(root, family = "Times New Roman", size = 20, underline = 1, weight = "normal")
+title = Label(root, text = "Donation System", fg = "white", bg = "black")
+title.configure(font = myFont)
 title.grid(row = 0, column = 1)
 label1 = Label(root, text = "First Name")
 label2 = Label(root, text = "Last Name")
@@ -57,7 +60,7 @@ c = Checkbutton(root, text="Keep me logged in.")
 c.grid(row = 5, column = 1)
 
 button1 = Button(root, text = "Create Account", bg ="blue", fg = "blue", command = button1_func)
-button1.grid(row = 6, column = 3) #need to get this button to first check password then add the user to db.txt
+button1.grid(row = 6, column = 3)
 
 root.mainloop()
-
+#need to get program to switch to next window (classes???)
