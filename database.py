@@ -13,7 +13,7 @@ def read_record(first):
                 return frags
 
 
-def write_record(name, age, password):
+def write_record(name, age, password, funds, totalGiven, type):
     with open('db.txt', 'r') as f:
         for line in f:
             line = line.strip()
@@ -22,10 +22,10 @@ def write_record(name, age, password):
                 print('Name already exists.')
                 return
     with open('db.txt', 'a+') as f:
-        f.write("{}, {}, {}\n".format(name, age, password))
+        f.write("{}, {}, {}, {}, {}, {}\n".format(name, age, password, funds, totalGiven, type))
         
 
 
-'''write_record('john', 20, 'hello123')
+'''write_record('john', 20, 'hello123', 0, 0)
 print(read_record("john" ))
 print(read_record("Frank"))'''
