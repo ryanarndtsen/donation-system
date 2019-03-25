@@ -21,13 +21,30 @@ class LogInPage(Frame):
         self.label6.grid(row=2, sticky=E)
         self.label7.grid(row=3, sticky = E)
 
-        self.z = Entry(root)
-        self.y = Entry(root)
-        self.x = Entry(root)
+        self.z = Entry(self.frame)
+        self.y = Entry(self.frame)
+        self.x = Entry(self.frame)
         self.z.grid(row=1, column=1)
         self.y.grid(row=2, column=1)
         self.x.grid(row=3, column=1)
 
+        self.liButton = Button(self.frame, text = "Log In", command = self.liButtonFunc)
+        self.liButton.grid(row=4, column = 2)
+
+    def liButtonFunc(self):
+        if self.z.get() == "" or self.y.get() == "" or self.x.get() == "":
+            print("First name, last name, and password need to be defined.")
+        else:
+            name = self.z.get() + " " + self.y.get()
+            try:
+                passw = str(read_record(name)[2]) #returning NoneType when name is not in database
+                if (passw == self.x.get()):
+                    print("Log In successful.")
+                    # move to home page
+                else:
+                    print("Invalid password.")
+            except:
+                print("Account name does not exist.")
 
 root = Tk()
 app = LogInPage(root)

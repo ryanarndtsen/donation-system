@@ -45,12 +45,12 @@ def defineHoboAttributes():
     totalCashedIn = pers2.gettCI()
     write_record(name, age, passw, balance, totalCashedIn, "Hobo")
 def button1_func():
-    if e.get() == "" or f.get() == "" or g.get() == "":
-        print("First, last name, and age need to be defined.")
     try:
         int(g.get())
     except:
         print("Age must be a number.")
+    if e.get() == "" or f.get() == "" or g.get() == "":
+        print("First name, last name, and age need to be defined.")
     else:
         passw = h.get()
         if (var1.get() == 1 and var2.get() == 1) or (var1.get() == 0 and var2.get() ==0):
@@ -58,11 +58,13 @@ def button1_func():
         elif var1.get() == 1:
             if hasCapitals(passw) and hasNumbers(passw) and len(passw) >= 6:
                 defineGiverAttributes()
+                print("Giver account created")
             else:
                 print("Invalid password.")
         elif var2.get() == 1:
             if hasCapitals(passw) and hasNumbers(passw) and len(passw) >= 6:
                 defineHoboAttributes()
+                print("Hobo account created")
             else:
                 print("Invalid password.")
 

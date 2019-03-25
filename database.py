@@ -26,6 +26,6 @@ def write_record(name, age, password, funds, totalGiven, type):
         
 
 
-'''write_record('john', 20, 'hello123', 0, 0)
+'''write_record('john', 20, 'hello123', 0, 0, "Giver")
 print(read_record("john" ))
 print(read_record("Frank"))'''
