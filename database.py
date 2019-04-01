@@ -3,8 +3,7 @@ DELIM = ', '
 def read_record(first):
     with open('db.txt', 'r') as f:
         for line in f:
-            line = line.strip()
-            if line.startswith(first):
+            if line.strip().split(DELIM)[0] == first:
                 frags = line.split(DELIM)
                 try:
                     frags[1] = int(frags[1])
@@ -13,7 +12,7 @@ def read_record(first):
                 return frags
 
 
-def write_record(name, age, password, funds, totalGiven, type):
+def write_record(name, age, password, numb, numb2, type):
     with open('db.txt', 'r') as f:
         for line in f:
             line = line.strip()
@@ -22,7 +21,7 @@ def write_record(name, age, password, funds, totalGiven, type):
                 print('Name already exists.')
                 return
     with open('db.txt', 'a+') as f:
-        f.write("{}, {}, {}, {}, {}, {}\n".format(name, age, password, funds, totalGiven, type))
+        f.write("{}, {}, {}, {}, {}, {}\n".format(name, age, password, numb, numb2, type))
         
 
 

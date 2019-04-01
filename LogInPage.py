@@ -3,10 +3,11 @@ from database import *
 from tkinter import *
 from tkinter.font import Font
 #from Interface import *
+from HomePage import GiverHomePage, HoboHomePage
 
 class LogInPage(Frame):
     def __init__(self, master):
-        myFont = Font(root, family="Times New Roman", size=20, underline=1, weight="normal")
+        myFont = Font(master, family="Times New Roman", size=20, underline=1, weight="normal")
         self.frame = Frame(master)
         self.frame.pack()
 
@@ -35,16 +36,40 @@ class LogInPage(Frame):
         if self.z.get() == "" or self.y.get() == "" or self.x.get() == "":
             print("First name, last name, and password need to be defined.")
         else:
-            name = self.z.get() + " " + self.y.get()
+            u = User() #make a temp user for easier class interaction later
+            u.setName(self.z.get(),self.y.get())
             try:
-                passw = str(read_record(name)[2]) #returning NoneType when name is not in database
-                if (passw == self.x.get()):
+                temp = str(read_record(u.getName())[2])
+            except:
+                print("Account name does not exist.")
+            try:
+                u.setPassword(temp) #returning NoneType when name is not in database
+                if (u.getPassword() == self.x.get()):
                     print("Log In successful.")
-                    # move to home page
+                    list = read_record(u.getName())
+                    print(str(list[5]))
+                    if str(list[5]) == "Giver":
+                        giver = Giver(u.firstName, u.lastName, list[1], [0,0,0,0], list[2], list[3], list[4])
+                        self.changePageGiver(giver)
+                    elif str(list[5]) == "Hobo":
+                        hobo = Hobo(u.firstName, u.lastName, list[1], [0,0,0,0], list[2], list[3], list[4])
+                        self.changePageHobo(hobo)
+                    else:
+                        print("WTF")
                 else:
                     print("Invalid password.")
             except:
-                print("Account name does not exist.")
+                print("Please re-enter information.")
+    def changePageGiver(self, giver):
+        root.destroy()
+        root2 = Tk()
+        app = GiverHomePage(root2, giver)
+        root2.mainloop()
+    def changePageHobo(self, hobo):
+        root.destroy()
+        root2 = Tk()
+        app = HoboHomePage(root2, hobo)
+        root2.mainloop() #fix
 
 root = Tk()
 app = LogInPage(root)
